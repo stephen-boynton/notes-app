@@ -13,7 +13,12 @@ console.log("Command: ", command);
 console.log(argv);
 
 if (command === "add") {
-  notes.addNote(argv.title, argv.body);
+  const note = notes.addNote(argv.title, argv.body);
+  if (note) {
+    console.log("Saved note");
+  } else {
+    console.log("Failed to save note");
+  }
 } else if (command === "list") {
   notes.getAll();
 } else if (command === "read") {
