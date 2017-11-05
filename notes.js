@@ -31,11 +31,13 @@ const addNote = (title, body) => {
 };
 
 const getAll = () => {
-  console.log("Getting all notes.");
+  return fetchNotes();
 };
 
 const readNote = title => {
-  console.log("Reading note " + title);
+  const notes = fetchNotes();
+  const note = notes.filter(note => note.title === title);
+  return note;
 };
 
 const removeNote = title => {

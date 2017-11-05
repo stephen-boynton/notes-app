@@ -14,15 +14,17 @@ console.log(argv);
 
 if (command === "add") {
   const note = notes.addNote(argv.title, argv.body);
-  if (note) {
-    console.log("Saved note");
-  } else {
-    console.log("Failed to save note");
-  }
+  note ? console.log("Saved note") : console.log("Failed to save note");
 } else if (command === "list") {
-  notes.getAll();
+  const list = notes.getAll();
+  if (list) {
+    list.forEach(note => console.log(note));
+  } else {
+    console.log("You have no notes.");
+  }
 } else if (command === "read") {
-  notes.readNote(argv.title);
+  const note = notes.readNote(argv.title);
+  note ? console.log(note) : console.log("Note not found.");
 } else if (command === "remove") {
   const noteRemoved = notes.removeNote(argv.title);
   const message = noteRemoved
